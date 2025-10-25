@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     loadUser();
-  }, []);
+  }, [state.token]);
 
   const login = async (email, password) => {
     try {

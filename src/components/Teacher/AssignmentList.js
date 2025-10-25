@@ -1,6 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
-import api from '../../services/api';
+
 import toast from 'react-hot-toast';
 
 const AssignmentList = ({

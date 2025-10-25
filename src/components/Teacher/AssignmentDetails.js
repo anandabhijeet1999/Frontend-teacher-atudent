@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { format } from 'date-fns';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
@@ -11,9 +11,9 @@ const AssignmentDetails = ({ assignment, onClose }) => {
     if (assignment) {
       fetchSubmissions();
     }
-  }, [assignment]);
+  }, [assignment, fetchSubmissions]);
 
-  const fetchSubmissions = async () => {
+  const fetchSubmissions = useCallback(async () => {
     try {
       setLoading(true);
       const response = await api.get(`/assignments/${assignment._id}/submissions`);
@@ -23,7 +23,7 @@ const AssignmentDetails = ({ assignment, onClose }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [assignment._id]);
 
   const handleReviewSubmission = async (submissionId) => {
     try {
