@@ -7,12 +7,6 @@ const AssignmentDetails = ({ assignment, onClose }) => {
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (assignment) {
-      fetchSubmissions();
-    }
-  }, [assignment, fetchSubmissions]);
-
   const fetchSubmissions = useCallback(async () => {
     try {
       setLoading(true);
@@ -24,6 +18,12 @@ const AssignmentDetails = ({ assignment, onClose }) => {
       setLoading(false);
     }
   }, [assignment._id]);
+
+  useEffect(() => {
+    if (assignment) {
+      fetchSubmissions();
+    }
+  }, [assignment, fetchSubmissions]);
 
   const handleReviewSubmission = async (submissionId) => {
     try {
